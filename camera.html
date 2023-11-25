@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>SDMR</title>
+  <style>
+    #video-container {
+      margin: 1px;
+      display: flex;
+      justify-content: center;
+    }
+    fundo{
+        background-color: black;
+    }
+    video {
+      width: 1000%; /* Largura aumentada para 70% do contêiner */
+      height: auto; /* Altura ajustada automaticamente para manter a proporção */
+      max-width: 1000px; /* Largura máxima definida */
+      border: 2px solid #333;
+    }
+  </style>
+</head>
+<body>
+  <h1>Acesso à Câmera</h1>
+  <div id="video-container">
+    <video id="video" autoplay playsinline></video>
+  </div>
+
+  <script>
+    // Acessa a câmera do dispositivo
+    navigator.mediaDevices.getUserMedia({ video: true })
+      .then(stream => {
+        const video = document.getElementById('video');
+        video.srcObject = stream;
+      })
+      .catch(error => {
+        console.error('Erro ao acessar a câmera:', error);
+      });
+  </script>
+</body>
+</html>
